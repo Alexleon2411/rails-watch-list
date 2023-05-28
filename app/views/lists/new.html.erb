@@ -5,7 +5,11 @@
         <h3>Create a new list</h3>
         <%= simple_form_for @list do |f| %>
           <%= f.input :name, placeholder: 'Drama' %>
+          <%= f.input :photo, as: :file %>
+          <div class="d-flex justify-content-between">
           <%= f.submit class: 'btn btn-flat' %>
+          <%= link_to "Cancel", lists_path, class: "btn"%>
+          </div>
         <% end %>
       </div>
     </div>
