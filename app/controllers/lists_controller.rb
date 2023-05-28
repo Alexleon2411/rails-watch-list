@@ -2,6 +2,13 @@ class ListsController < ApplicationController
   before_action :set_list, only: [:show]
   def index
     @lists = List.all
+    if params[:query].present?
+      @query = params[:query]
+      @lists = List.where("name LIKE ?", "%#{params[:query]}%")
+
+    else
+      @lists= List.all
+    end
   end
 
   def show

@@ -1,16 +1,14 @@
 <div class="cover mb-4 d-flex align-items-center justify-content-center cover">
   <div class="text-center text-primary p-4" >
-    <h1>Save any kind of movies</h1>
-    <h3 class="typed-js" data-controller="typed-js"></h3>
+    <h1><%= link_to "Save any kind of movies", lists_path, class: "text-decoration-none" %></h1>
   </div>
 </div>
 
 
 <div class="container py-5">
 
-
   <div class="d-flex align-items-center justify-content-between mb-3">
-    <form class="flex my-2 my-lg-0">
+    <form class="d-flex my-2 my-lg-0">
           <input class="form-control me-2" name="query" type="search" placeholder="Search" aria-label="Search" value="<%= params[:query] %>">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
@@ -24,7 +22,8 @@
         <%= link_to show_lists_path(list), class:"text-decoration-none text-white text-capitalize " do %>
           <%= list.name %>
           <% if list.photo.attached? %>
-            <%= cl_image_tag list.photo.key, height: 300, width: 400, crop: :fill %>
+            <%= cl_image_tag list.photo.key, height: 300, width: 400, crop: :fill%>
+            <%= link_to "Delete this list", delete_list_path(list), class: "btn btn-warning text-decoration-none", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this list?" } %>
           <% end %>
         <% end %>
       </div>
